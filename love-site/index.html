@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Love ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ff6a88, #ff99ac);
+    text-align: center;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Glowing text */
+.glow {
+    font-size: 30px;
+    margin-top: 50px;
+    text-shadow: 0 0 10px white, 0 0 20px pink;
+}
+
+/* Typing text */
+.typing {
+    font-size: 20px;
+    margin-top: 20px;
+    min-height: 30px;
+}
+
+/* Button */
+.button {
+    margin: 20px;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 30px;
+    background: white;
+    color: #ff4e8a;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button:hover {
+    transform: scale(1.1);
+}
+
+/* Hidden sections */
+.hidden {
+    display: none;
+    animation: fadeIn 1s ease;
+}
+
+/* Images */
+img {
+    width: 260px;
+    border-radius: 20px;
+    margin: 15px;
+    transition: 0.5s;
+    box-shadow: 0 0 20px rgba(255,255,255,0.6);
+}
+
+img:hover {
+    transform: scale(1.1) rotate(2deg);
+}
+
+/* Hearts */
+.heart {
+    position: fixed;
+    bottom: 0;
+    animation: floatUp 5s linear infinite;
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+/* Fade */
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+</style>
+</head>
+
+<body>
+
+<h1 class="glow">Hey My Ocean 🩵</h1>
+
+<div class="typing" id="text"></div>
+
+<button class="button" onclick="startExperience()">Touch Me 🤍</button>
+
+<div id="magic" class="hidden">
+    <p>You make my world brighter every day ✨</p>
+
+    <img src="img1.JPEG">
+    <img src="img2.JPEG">
+
+    <br>
+    <button class="button" onclick="showReasons()">Why I Love You 💕</button>
+</div>
+
+<div id="reasons" class="hidden">
+    <p>💖 Your smile 💖</p>
+    <p>💖 Your voice 💖</p>
+    <p>💖 Your kindness 💖</p>
+<p>💖 Your Hair 💖</p>
+<p>💖 Your Way of Showing Love 💖</p>
+<p>💖 Your breath 💖</p>
+<p>💖 Your Underarms 💖</p>
+<p>💖 Your Smell 💖</p>
+    <p>💖 Everything about you 💖</p>
+</div>
+
+<audio id="bgMusic" loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// typing animation
+const messages = [
+    "I wanted to make something special for you...",
+    "Because you are special to me ❤️",
+    "Every moment with you feels magical ✨",
+    "You always make my day special 😇",
+    "I Love You So much 🤍",
+    "Thank You So Much for Everything 🥺",
+    "touch below and see 💖"
+];
+
+let msgIndex = 0;
+let charIndex = 0;
+const textElement = document.getElementById("text");
+
+function typeText() {
+    if (charIndex < messages[msgIndex].length) {
+        textElement.innerHTML += messages[msgIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(typeText, 50);
+    } else {
+        setTimeout(() => {
+            textElement.innerHTML = "";
+            charIndex = 0;
+            msgIndex = (msgIndex + 1) % messages.length;
+            typeText();
+        }, 2000);
+    }
+}
+typeText();
+
+// START EXPERIENCE (FIXED)
+function startExperience() {
+    document.getElementById("magic").style.display = "block";
+
+    const music = document.getElementById("bgMusic");
+
+    // safer play
+    music.volume = 0.3;
+    music.play().catch(() => {
+        console.log("User interaction needed");
+    });
+}
+
+// Show reasons
+function showReasons() {
+    document.getElementById("reasons").style.display = "block";
+}
+
+// hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 10 + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+}
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
